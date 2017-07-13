@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Twitchtv Live</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+    body {
+      background-color: #F0F0F0;
+    }
+    #main {
+      margin-top:50px;
+      border: 1px solid #5cb85c;
+      width: 50%;
+      padding: 10px;
+    }
+    i {
+      color: #5cb85c;
+    }
+    #display {
+      width: 50%;
+      margin-top:20px;
+    }
+
+    </style>
+  </head>
+  <body>
+    <div class="bg-faded text-center container rounded" id="main">
+      <h1 class="text-success">Twitchtv Live</h1>
+      <nav class="navbar navbar-light bg-faded">
+      <form class="form-inline justify-content-center">
+        <label class="btn btn-outline-info">All</label>
+        <label class="btn btn-outline-success">Online</label>
+        <label class="btn btn-outline-danger">Offline</label>
+        <input class="form-control" type="text" placeholder="Search a channel" id="input">
+        <label class="btn" id="icon"><i class="fa fa-search fa-2x" aria-hidden="true"></i></label>
+      </form>
+      </nav>
+    </div>
+    <div class="container" id="display">
+    </div>
+
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+      var channels = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
+        $.getJSON('https://wind-bow.glitch.me/twitch-api/streams/freecodecamp?callback=?', function(data) {
+          console.log(data);
+        });
+  });
+
+    </script>
+  </body>
+</html>
