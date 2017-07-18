@@ -20,7 +20,7 @@
       padding: 10px;
     }
     label, img{
-      margin-right:8px;
+      margin-right:5px;
     }
     img {
       width: 100%;
@@ -31,9 +31,9 @@
 
   <body>
 
-    <div class="bg-faded text-center container rounded" id="main">
+    <div class="text-center container rounded" id="main">
       <h1 class="text-info">Twitchtv Live</h1>
-      <nav class="navbar navbar-light bg-faded">
+      <nav class="navbar navbar-light">
       <form class="form-inline justify-content-center">
         <label class="btn btn-outline-info" id="all">All&nbsp<i class="fa fa-circle" aria-hidden="true"></i></label>
         <label class="btn btn-outline-success" id="online">Online&nbsp<i class="fa fa-circle" aria-hidden="true"></i></label>
@@ -46,7 +46,7 @@
       </nav>
     </div>
 
-    <div class="container bg-faded rounded" id="display">
+    <div class="container rounded" id="display">
     </div>
 
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
@@ -80,7 +80,7 @@
                        game = data.stream.channel.game;
                      }
 
-                     $("#display").append('<div class="online"><div class="alert alert-success" role="alert"><div class="row align-items-center"><div class="col-2"><img class="rounded" alt="' + channelName + ' logo" src="' + logourl + '"></div><div class="col-8"><h3><a href="' + data.stream.channel.url + '" class="alert-link" target="_blank">' + channelName + '</a></h3><p><em>' + game + ': ' + data.stream.channel.status + '</em></p></div><div class="col"><i class="fa fa-circle fa-lg" aria-hidden="true"></i></div></div></div></div>');
+                     $("#display").append('<div class="online" id="' + channelName + '"><div class="alert alert-success" role="alert"><div class="row align-items-center"><div class="col-2"><img class="rounded" alt="' + channelName + ' logo" src="' + logourl + '"></div><div class="col-8"><h3><a href="' + data.stream.channel.url + '" class="alert-link" target="_blank">' + channelName + '</a></h3><p><em>' + game + ': ' + data.stream.channel.status + '</em></p></div><div class="col"><i class="fa fa-circle fa-lg" aria-hidden="true"></i></div></div></div></div>');
 
                    } else {
 
@@ -92,7 +92,7 @@
                          logourl = response.logo;
                        }
 
-                     $("#display").append('<div class="offline"><div class="alert alert-danger" role="alert"><div class="row align-items-center"><div class="col-2"><img class="rounded" alt="' + channelName + ' logo" src="' + logourl + '"></div><div class="col-8"><h3><a href="' + response.url + '" class="alert-link" target="_blank">' + channelName + '</a></h3></div><div class="col"><i class="fa fa-circle fa-lg" aria-hidden="true"></i></div></div></div></div>');
+                     $("#display").append('<div class="offline" id="' + channelName + '"><div class="alert alert-danger" role="alert"><div class="row align-items-center"><div class="col-2"><img class="rounded" alt="' + channelName + ' logo" src="' + logourl + '"></div><div class="col-8"><h3><a href="' + response.url + '" class="alert-link" target="_blank">' + channelName + '</a></h3></div><div class="col"><i class="fa fa-circle fa-lg" aria-hidden="true"></i></div></div></div></div>');
 
                      });
                    }
@@ -120,6 +120,17 @@
 
       });
 
+      $("#input").on("change keyup paste", function(){
+
+          channels.forEach(function(channelName) {
+
+            if (channelName.toLowerCase().indexOf($("#input").val()) >= 0) {
+                $("#" + channelName).css("display", "initial");
+            } else {
+              $("#" + channelName).css("display", "none");
+            }
+          });
+      });
 
 
     });
