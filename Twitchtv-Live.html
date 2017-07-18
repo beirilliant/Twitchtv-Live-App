@@ -15,11 +15,14 @@
     }
     #main, #display {
       margin-top:30px;
-      width: 30%;
+      width: 35%;
       padding: 10px;
     }
     label, img{
       margin-right:8px;
+    }
+    img {
+      width: 100%;
     }
 
     </style>
@@ -32,8 +35,10 @@
         <label class="btn btn-outline-info">All</label>
         <label class="btn btn-outline-success">Online</label>
         <label class="btn btn-outline-danger">Offline</label>
-        <input class="form-control" type="text" placeholder="Search a channel" id="input">
-        <label class="btn text-info" id="icon"><i class="fa fa-search fa-2x" aria-hidden="true"></i></label>
+        <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
+        <input type="text" class="form-control" id="input" placeholder="Search a channel" aria-describedby="basic-addon1">
+        </div>
       </form>
       </nav>
     </div>
@@ -56,10 +61,11 @@
         $.getJSON(api, function(data) {
 
                  if (data.stream !== null) {
-                     $("#display").append('<p class="alert alert-success" role="alert"><img src=' + logoURL + '><a href="' + channelURL + '" class="alert-link" target="_blank">' + channelName + '</a>' + data.stream.channel.status + '<span class="pull-right"><i class="fa fa-circle" aria-hidden="true"></i> Online</span></p>');
+                     $("#display").append('<div class="alert alert-success" role="alert"><div class="row align-items-center"><div class="col-2"><img class="rounded" src="' + data.stream.channel.logo + '"></div><div class="col-8"><h3><a href="' + data.stream.channel.url + '" class="alert-link" target="_blank">' + channelName + '</a></h3><p><em>' + data.stream.channel.game + ': ' + data.stream.channel.status + '</em></p></div><div class="col"><i class="fa fa-circle fa-lg" aria-hidden="true"></div></div></div>');
                    } else {
 
-                     $("#display").append('<p class="alert alert-danger" role="alert"><img src=' + logoURL + '><a href="' + channelURL + '" class="alert-link" target="_blank">' + channelName + '</a><span class="pull-right"><i class="fa fa-circle" aria-hidden="true"></i> Offline</span></p>');
+                     $("#display").append('<div class="alert alert-danger" role="alert"><div class="row align-items-center"><div class="col-2"><img class="rounded" src="' + logoURL + '"></div><div class="col-8"><h3><a href="' + channelURL + '" class="alert-link" target="_blank">' + channelName + '</a></h3><p>' + 'hahha' + '</p></div><div class="col"><i class="fa fa-circle fa-lg" aria-hidden="true"></div></div></div>');
+
                    }
            });
 
